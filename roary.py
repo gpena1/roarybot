@@ -5,20 +5,6 @@ import os
 import aiohttp
 import re
 
-
-class TestForm(discord.ui.Modal, title='Questionnaire'):
-    name = discord.ui.TextInput(label='Name', custom_id='name', style=discord.TextStyle.short,required=True)
-    tell_me = discord.ui.TextInput(label='Tell me about yourself!', custom_id='bio',style=discord.TextStyle.long)
-    async def on_submit(self, int:discord.Interaction):
-        await int.response.send_message(f'Response recorded.')
-        print(self.name,self.tell_me)
-    async def on_timeout(self):
-        print(f'Timeout occurred.')
-        self.stop()
-
-async def cb(interaction):
-    await interaction.response.send_message(f'The following is your data: \n```{str(interaction.data)}```',ephemeral=True)
-
 intents = discord.Intents.default()
 bot = commands.Bot(command_prefix="!", intents=intents, activity=discord.Activity(type=discord.ActivityType.watching,name='FIU panthers'), status=discord.Status.do_not_disturb)
 
